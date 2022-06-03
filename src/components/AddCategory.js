@@ -12,7 +12,7 @@ export const AddCategory = ( { setCategories } ) => {
         e.preventDefault();
         //Primera validación, trim elimina los espacios vacíos
         if ( inputValue.trim().length > 2) {
-            setCategories( cats => [...cats, inputValue ]);
+            setCategories( cats => [inputValue, ...cats, ]);
             setInputvalue('');
         }
         

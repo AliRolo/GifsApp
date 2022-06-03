@@ -1,35 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useFetchGifs } from '../hooks/useFetchGifs'
+//import { getGifs } from '../helpers/getGifs';
 import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
 
-    const [images, setImages] = useState([]);
-    useEffect( () => {
-        getGifs();
-    }, [] )
-    
+    const { data:images, loading } = useFetchGifs( category );
 
-    const getGifs = async () => {
-        const url = 'https://api.giphy.com/v1/gifs/search?q=Rick+and+Morty&limit=10&api_key=MIl7qFg7caXF14nG3ot4EFQzSjOQQIbI';
-        const resp = await fetch( url );
-        const { data } = await resp.json();
-
-        const gifs = data.map( img => {
-           return  {
-               id: img.id,
-               title: img.title, 
-               url: img.images?.downsized_medium.url
-           }
-        })
-
-
-        console.log(data);
-        setImages( gifs);
-    }
-
+//Utilizo <></> porque estoy retornando 2 objetos, necesito aplicar un fragment corto.
     return (
-        <div>
-            <h3> {category} </h3>
+        <>
+        <h3 className="animate__animated animate__fadeIn"> {category} </h3>
+
+        { loading && <p className="animate__animated animate__flash">Loading...</p>} 
+           
+        <div className="card-grid">
                 {
                     images.map( img => (
                         <GifGridItem 
@@ -38,6 +23,8 @@ export const GifGrid = ({ category }) => {
                         />
                     ))
                 }
-        </div>
+            </div>
+        </>
+        
     )
 }

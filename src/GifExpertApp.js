@@ -5,7 +5,7 @@ import { GifGrid } from './components/GifGrid';
 export const GifExpertApp = () => {
 
     //const categories = ['One Punch', 'Samurai X', 'Dragon Ball'];
-    const [categories, setCategories] = useState(['One Punch']);
+    const [categories, setCategories] = useState(['Grogu']);
 
     /* const handleAdd = () => {
          //El operador spread me conserva mis antiguas categorías y me añade una nueva.
@@ -17,7 +17,7 @@ export const GifExpertApp = () => {
     return (
         <>
             <h2>GifExpertApp</h2>
-            <AddCategory setCategories={setCategories} />
+            <AddCategory setCategories={ setCategories } />
             <hr />
             <ol>
                 {
